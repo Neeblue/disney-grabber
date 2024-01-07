@@ -26,11 +26,14 @@ public static class UrlBuilder
     /// <returns></returns>
     public static string UrlApiBuilder(int month, int date, int partySize, Time t, Restaurant r)
     {
-        int validMaxDate = DateTime.DaysInMonth(2023, month);
+        int validMaxDate = DateTime.DaysInMonth(2024, month);
         if (date < 1 || date > validMaxDate) return "";
         if (month < 1 || month > 12) return "";
 
-        string url = $"https://disneyworld.disney.go.com/en_CA/finder/api/v1/explorer-service/dining-availability/%7B43C01E1D-D7BA-4FAD-A0AB-38FE74B92D4B%7D/wdw/{Restaurants[r].Id};entityType=restaurant/table-service/{partySize}/2023-{month}-{date}/?{Times[t]}";
+        string monthString = month < 10 ? $"0{month}" : $"{month}";
+        string dateString = date < 10 ? $"0{date}" : $"{date}";
+
+        string url = $"https://disneyworld.disney.go.com/en_CA/finder/api/v1/explorer-service/dining-availability/%7B43C01E1D-D7BA-4FAD-A0AB-38FE74B92D4B%7D/wdw/{Restaurants[r].Id};entityType=restaurant/table-service/{partySize}/2024-{monthString}-{dateString}/?{Times[t]}";
         return url;
     }
 
